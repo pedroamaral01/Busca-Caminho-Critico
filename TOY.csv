@@ -1,5 +1,5 @@
 Código,Nome,Período,Duração,Dependências
-CS001,Lógica de Programação,1,1,
+CS001,Lógica de Programação,1,5,
 CS002,HTML e CSS,1,1,
 CS003,Algoritmos,2,1,CS001
 CS004,Orientação a Objetos,2,1,
