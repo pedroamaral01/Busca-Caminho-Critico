@@ -21,8 +21,8 @@ def criaGrafoDeDisciplinas(dados):
     G.add_node("s")
     G.add_node("t")
     
-    duracoes = {}
-    nomesDisciplinas = {}
+    duracoes = {}  # Armazena a duração de cada curso
+    nomesDisciplinas = {}  # Armazena o nome de cada disciplina do curso
        
     for row in dados:
         codigo = row['Código']
@@ -35,7 +35,7 @@ def criaGrafoDeDisciplinas(dados):
         dependencias = [dep.strip() for dep in dependencias if dep.strip()]
         
         G.add_node(codigo, name=nome, periodo=periodo)
-        duracoes[codigo] = duracao  # Armazena a duração de cada curso
+        duracoes[codigo] = duracao 
         nomesDisciplinas[codigo] = nome
         
         has_dependencies = False
@@ -85,7 +85,7 @@ def desenharGrafo(G, nomesDisciplinas, caminho:None):
     pos["t"] = [1, 0]   # Posiciona 't' na direita
     
     # Cria listas de nós e arestas para colorir
-    node_colors = ['lightblue'] * len(G.nodes)
+    node_colors = ['blue'] * len(G.nodes)
     edge_colors = ['gray'] * len(G.edges)
     
     if caminho:
@@ -123,12 +123,7 @@ def main():
         try:
             dados = leArquivo(file)
             grafo, nomesDisciplinas = criaGrafoDeDisciplinas(dados)
-            
-            
-            print("\nArestas do grafo com peso (duração):")
-            for u, v, data in grafo.edges(data=True):  # Acessa o dicionário 'data' das arestas
-                print(f"Aresta de {u} para {v}, peso: {data['peso']}")   
-                        
+                                    
             pred = calcularCaminhoMaximoBellmanFord(grafo, s = "s")
             
             caminho = reconstruirCaminho(pred,s = "s",t = "t")
